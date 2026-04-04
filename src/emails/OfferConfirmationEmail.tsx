@@ -86,7 +86,7 @@ export interface OfferConfirmationEmailProps {
   tripEndDate: string;
   hotel: HotelProps;
   outboundFlight: FlightProps;
-  returnFlight: FlightProps;
+  returnFlight?: FlightProps;
   pnrLocator: string;
   passengerName: string;
   priceSummary: PriceSummaryProps;
@@ -125,7 +125,7 @@ function staticMapUrl(lat: number, lon: number): string {
   );
 }
 
-function stars(count: number): string {
+function renderStars(count: number): string {
   return "\u2605".repeat(count) + "\u2606".repeat(5 - count);
 }
 
@@ -467,27 +467,12 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 
             <Row style={{ marginBottom: "8px" }}>
               <Column style={{ width: "140px" }}>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    color: color.textLight,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0" }}>
                   Traveler
                 </Text>
               </Column>
               <Column>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    color: color.textBase,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "13px", fontWeight: 600, color: color.textBase, margin: "0" }}>
                   {travelerName}
                 </Text>
               </Column>
@@ -495,27 +480,12 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 
             <Row style={{ marginBottom: "8px" }}>
               <Column style={{ width: "140px" }}>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    color: color.textLight,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0" }}>
                   Booking Reference
                 </Text>
               </Column>
               <Column>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    color: color.textBase,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "13px", fontWeight: 600, color: color.textBase, margin: "0" }}>
                   {bookingRef}
                 </Text>
               </Column>
@@ -523,27 +493,12 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 
             <Row style={{ marginBottom: "8px" }}>
               <Column style={{ width: "140px" }}>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    color: color.textLight,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0" }}>
                   Dates
                 </Text>
               </Column>
               <Column>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    color: color.textBase,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "13px", fontWeight: 600, color: color.textBase, margin: "0" }}>
                   {tripStartDate} &ndash; {tripEndDate}
                 </Text>
               </Column>
@@ -576,13 +531,7 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
           <Section style={sectionPadding}>
             <Heading
               as="h2"
-              style={{
-                ...font,
-                fontSize: "18px",
-                fontWeight: 600,
-                color: color.headingBlue,
-                margin: "0 0 16px",
-              }}
+              style={{ ...font, fontSize: "18px", fontWeight: 600, color: color.headingBlue, margin: "0 0 16px" }}
             >
               Hotel
             </Heading>
@@ -597,35 +546,13 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
               />
 
               <div style={{ padding: "20px" }}>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "18px",
-                    fontWeight: 600,
-                    color: color.textBase,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "18px", fontWeight: 600, color: color.textBase, margin: "0" }}>
                   {hotel.name}
                 </Text>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "14px",
-                    color: "#D4A017",
-                    margin: "4px 0",
-                  }}
-                >
-                  {stars(hotel.starRating)}
+                <Text style={{ ...font, fontSize: "14px", color: "#D4A017", margin: "4px 0" }}>
+                  {renderStars(hotel.starRating)}
                 </Text>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    color: color.textLight,
-                    margin: "0 0 12px",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0 0 12px" }}>
                   {hotel.address}
                 </Text>
 
@@ -633,27 +560,10 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 
                 <Row style={{ marginBottom: "6px" }}>
                   <Column style={{ width: "130px" }}>
-                    <Text
-                      style={{
-                        ...font,
-                        fontSize: "13px",
-                        color: color.textLight,
-                        margin: "0",
-                      }}
-                    >
-                      Room Type
-                    </Text>
+                    <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0" }}>Room Type</Text>
                   </Column>
                   <Column>
-                    <Text
-                      style={{
-                        ...font,
-                        fontSize: "13px",
-                        fontWeight: 500,
-                        color: color.textBase,
-                        margin: "0",
-                      }}
-                    >
+                    <Text style={{ ...font, fontSize: "13px", fontWeight: 500, color: color.textBase, margin: "0" }}>
                       {hotel.roomType}
                     </Text>
                   </Column>
@@ -661,27 +571,10 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 
                 <Row style={{ marginBottom: "6px" }}>
                   <Column style={{ width: "130px" }}>
-                    <Text
-                      style={{
-                        ...font,
-                        fontSize: "13px",
-                        color: color.textLight,
-                        margin: "0",
-                      }}
-                    >
-                      Check-in
-                    </Text>
+                    <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0" }}>Check-in</Text>
                   </Column>
                   <Column>
-                    <Text
-                      style={{
-                        ...font,
-                        fontSize: "13px",
-                        fontWeight: 500,
-                        color: color.textBase,
-                        margin: "0",
-                      }}
-                    >
+                    <Text style={{ ...font, fontSize: "13px", fontWeight: 500, color: color.textBase, margin: "0" }}>
                       {hotel.checkIn}
                     </Text>
                   </Column>
@@ -689,27 +582,10 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 
                 <Row style={{ marginBottom: "6px" }}>
                   <Column style={{ width: "130px" }}>
-                    <Text
-                      style={{
-                        ...font,
-                        fontSize: "13px",
-                        color: color.textLight,
-                        margin: "0",
-                      }}
-                    >
-                      Check-out
-                    </Text>
+                    <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0" }}>Check-out</Text>
                   </Column>
                   <Column>
-                    <Text
-                      style={{
-                        ...font,
-                        fontSize: "13px",
-                        fontWeight: 500,
-                        color: color.textBase,
-                        margin: "0",
-                      }}
-                    >
+                    <Text style={{ ...font, fontSize: "13px", fontWeight: 500, color: color.textBase, margin: "0" }}>
                       {hotel.checkOut}
                     </Text>
                   </Column>
@@ -717,27 +593,12 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 
                 <Row style={{ marginBottom: "12px" }}>
                   <Column style={{ width: "130px" }}>
-                    <Text
-                      style={{
-                        ...font,
-                        fontSize: "13px",
-                        color: color.textLight,
-                        margin: "0",
-                      }}
-                    >
+                    <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0" }}>
                       Confirmation #
                     </Text>
                   </Column>
                   <Column>
-                    <Text
-                      style={{
-                        ...font,
-                        fontSize: "13px",
-                        fontWeight: 600,
-                        color: color.successGreen,
-                        margin: "0",
-                      }}
-                    >
+                    <Text style={{ ...font, fontSize: "13px", fontWeight: 600, color: color.successGreen, margin: "0" }}>
                       {hotel.confirmationNumber}
                     </Text>
                   </Column>
@@ -760,25 +621,10 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
                     padding: "12px 16px",
                   }}
                 >
-                  <Text
-                    style={{
-                      ...font,
-                      fontSize: "13px",
-                      fontStyle: "italic",
-                      color: color.textBase,
-                      margin: "0 0 4px",
-                    }}
-                  >
+                  <Text style={{ ...font, fontSize: "13px", fontStyle: "italic", color: color.textBase, margin: "0 0 4px" }}>
                     &ldquo;{hotel.guestReviewQuote}&rdquo;
                   </Text>
-                  <Text
-                    style={{
-                      ...font,
-                      fontSize: "12px",
-                      color: color.textLight,
-                      margin: "0",
-                    }}
-                  >
+                  <Text style={{ ...font, fontSize: "12px", color: color.textLight, margin: "0" }}>
                     &mdash; {hotel.guestReviewAuthor}
                   </Text>
                 </div>
@@ -809,110 +655,59 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
                 padding: "16px 20px",
               }}
             >
-              <Text
-                style={{
-                  ...font,
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  color: color.textBase,
-                  margin: "0 0 4px",
-                }}
-              >
+              <Text style={{ ...font, fontSize: "13px", fontWeight: 600, color: color.textBase, margin: "0 0 4px" }}>
                 Cancellation Policy
               </Text>
-              <Text
-                style={{
-                  ...font,
-                  fontSize: "13px",
-                  color: color.textBase,
-                  margin: "0",
-                  lineHeight: "1.5",
-                }}
-              >
+              <Text style={{ ...font, fontSize: "13px", color: color.textBase, margin: "0", lineHeight: "1.5" }}>
                 {cancellationPolicy}
               </Text>
             </div>
           </Section>
 
           {/* -------- 8. Resort Fee Notice (yellow) -------- */}
-          <Section style={{ padding: "0 32px 16px" }}>
-            <div
-              style={{
-                backgroundColor: color.cautionYellowBg,
-                borderRadius: "8px",
-                padding: "16px 20px",
-              }}
-            >
-              <Text
+          {resortFeeNotice && (
+            <Section style={{ padding: "0 32px 16px" }}>
+              <div
                 style={{
-                  ...font,
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  color: color.textBase,
-                  margin: "0 0 4px",
+                  backgroundColor: color.cautionYellowBg,
+                  borderRadius: "8px",
+                  padding: "16px 20px",
                 }}
               >
-                Resort Fee
-              </Text>
-              <Text
-                style={{
-                  ...font,
-                  fontSize: "13px",
-                  color: color.textBase,
-                  margin: "0",
-                  lineHeight: "1.5",
-                }}
-              >
-                {resortFeeNotice}
-              </Text>
-            </div>
-          </Section>
+                <Text style={{ ...font, fontSize: "13px", fontWeight: 600, color: color.textBase, margin: "0 0 4px" }}>
+                  Resort Fee
+                </Text>
+                <Text style={{ ...font, fontSize: "13px", color: color.textBase, margin: "0", lineHeight: "1.5" }}>
+                  {resortFeeNotice}
+                </Text>
+              </div>
+            </Section>
+          )}
 
           <Hr style={{ borderColor: color.border, margin: "0 32px" }} />
 
-          {/* -------- 9. Outbound Flight -------- */}
+          {/* -------- 9 & 10. Flight Cards -------- */}
           <Section style={sectionPadding}>
             <Heading
               as="h2"
-              style={{
-                ...font,
-                fontSize: "18px",
-                fontWeight: 600,
-                color: color.headingBlue,
-                margin: "0 0 16px",
-              }}
+              style={{ ...font, fontSize: "18px", fontWeight: 600, color: color.headingBlue, margin: "0 0 16px" }}
             >
-              Flights
+              {returnFlight ? "Flights" : "Flight"}
             </Heading>
-            <FlightCard flight={outboundFlight} label="Outbound" />
-
-            {/* -------- 10. Return Flight -------- */}
-            <FlightCard flight={returnFlight} label="Return" />
+            <FlightCard flight={outboundFlight} label={returnFlight ? "Outbound" : "Departure"} />
+            {returnFlight && <FlightCard flight={returnFlight} label="Return" />}
           </Section>
 
           {/* -------- 11. Airline Check-in Links -------- */}
           <Section style={{ padding: "0 32px 8px" }}>
-            <Text
-              style={{
-                ...font,
-                fontSize: "14px",
-                fontWeight: 600,
-                color: color.headingBlue,
-                margin: "0 0 8px",
-              }}
-            >
+            <Text style={{ ...font, fontSize: "14px", fontWeight: 600, color: color.headingBlue, margin: "0 0 8px" }}>
               Online Check-in
             </Text>
             {checkInLinks.map((link) => (
               <div key={link.airlineName} style={{ marginBottom: "8px" }}>
                 <Link
                   href={link.url}
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    color: color.primaryBlue,
-                    fontWeight: 500,
-                  }}
+                  style={{ ...font, fontSize: "13px", color: color.primaryBlue, fontWeight: 500 }}
                 >
                   Check in with {link.airlineName} &rarr;
                 </Link>
@@ -924,55 +719,20 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
           <Section style={{ padding: "8px 32px 16px" }}>
             <Row style={{ marginBottom: "6px" }}>
               <Column style={{ width: "140px" }}>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    color: color.textLight,
-                    margin: "0",
-                  }}
-                >
-                  PNR Locator
-                </Text>
+                <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0" }}>PNR Locator</Text>
               </Column>
               <Column>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    color: color.textBase,
-                    margin: "0",
-                    letterSpacing: "1px",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "14px", fontWeight: 600, color: color.textBase, margin: "0", letterSpacing: "1px" }}>
                   {pnrLocator}
                 </Text>
               </Column>
             </Row>
             <Row>
               <Column style={{ width: "140px" }}>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "13px",
-                    color: color.textLight,
-                    margin: "0",
-                  }}
-                >
-                  Passenger Name
-                </Text>
+                <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0" }}>Passenger Name</Text>
               </Column>
               <Column>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    color: color.textBase,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "14px", fontWeight: 600, color: color.textBase, margin: "0" }}>
                   {passengerName}
                 </Text>
               </Column>
@@ -985,13 +745,7 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
           <Section style={sectionPadding}>
             <Heading
               as="h2"
-              style={{
-                ...font,
-                fontSize: "18px",
-                fontWeight: 600,
-                color: color.headingBlue,
-                margin: "0 0 16px",
-              }}
+              style={{ ...font, fontSize: "18px", fontWeight: 600, color: color.headingBlue, margin: "0 0 16px" }}
             >
               Price Summary
             </Heading>
@@ -999,30 +753,18 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
             {[
               { label: "Package Price", value: priceSummary.packagePrice },
               { label: "Taxes & Fees", value: priceSummary.taxes },
-              { label: "Resort Fee", value: priceSummary.resortFee },
+              ...(priceSummary.resortFee !== "$0.00"
+                ? [{ label: "Resort Fee", value: priceSummary.resortFee }]
+                : []),
             ].map((item) => (
               <Row key={item.label} style={{ marginBottom: "8px" }}>
                 <Column>
-                  <Text
-                    style={{
-                      ...font,
-                      fontSize: "14px",
-                      color: color.textBase,
-                      margin: "0",
-                    }}
-                  >
+                  <Text style={{ ...font, fontSize: "14px", color: color.textBase, margin: "0" }}>
                     {item.label}
                   </Text>
                 </Column>
                 <Column style={{ textAlign: "right" as const }}>
-                  <Text
-                    style={{
-                      ...font,
-                      fontSize: "14px",
-                      color: color.textBase,
-                      margin: "0",
-                    }}
-                  >
+                  <Text style={{ ...font, fontSize: "14px", color: color.textBase, margin: "0" }}>
                     {item.value}
                   </Text>
                 </Column>
@@ -1033,28 +775,12 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 
             <Row>
               <Column>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "16px",
-                    fontWeight: 600,
-                    color: color.textBase,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "16px", fontWeight: 600, color: color.textBase, margin: "0" }}>
                   Total Charged
                 </Text>
               </Column>
               <Column style={{ textAlign: "right" as const }}>
-                <Text
-                  style={{
-                    ...font,
-                    fontSize: "16px",
-                    fontWeight: 600,
-                    color: color.successGreen,
-                    margin: "0",
-                  }}
-                >
+                <Text style={{ ...font, fontSize: "16px", fontWeight: 600, color: color.successGreen, margin: "0" }}>
                   {priceSummary.totalCharged}
                 </Text>
               </Column>
@@ -1064,42 +790,16 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
           <Hr style={{ borderColor: color.border, margin: "0 32px" }} />
 
           {/* -------- 14. Customer Service -------- */}
-          <Section
-            style={{
-              ...sectionPadding,
-              textAlign: "center" as const,
-            }}
-          >
-            <Text
-              style={{
-                ...font,
-                fontSize: "14px",
-                fontWeight: 600,
-                color: color.headingBlue,
-                margin: "0 0 4px",
-              }}
-            >
+          <Section style={{ ...sectionPadding, textAlign: "center" as const }}>
+            <Text style={{ ...font, fontSize: "14px", fontWeight: 600, color: color.headingBlue, margin: "0 0 4px" }}>
               Need help with your booking?
             </Text>
-            <Text
-              style={{
-                ...font,
-                fontSize: "13px",
-                color: color.textLight,
-                margin: "0 0 8px",
-              }}
-            >
+            <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0 0 8px" }}>
               Our travel experts are available 24/7
             </Text>
             <Link
               href="tel:1-877-477-4235"
-              style={{
-                ...font,
-                fontSize: "18px",
-                fontWeight: 600,
-                color: color.primaryBlue,
-                textDecoration: "none",
-              }}
+              style={{ ...font, fontSize: "18px", fontWeight: 600, color: color.primaryBlue, textDecoration: "none" }}
             >
               1-877-477-4235
             </Link>
@@ -1113,49 +813,20 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
               textAlign: "center" as const,
             }}
           >
-            <Text
-              style={{
-                ...font,
-                fontSize: "12px",
-                color: color.textLight,
-                margin: "0 0 8px",
-              }}
-            >
+            <Text style={{ ...font, fontSize: "12px", color: color.textLight, margin: "0 0 8px" }}>
               Priceline.com LLC &bull; 800 Connecticut Ave, Norwalk, CT 06854
             </Text>
             <div>
               {[
                 { text: "Help Center", href: "https://www.priceline.com/help" },
-                {
-                  text: "Privacy Policy",
-                  href: "https://www.priceline.com/privacy",
-                },
-                {
-                  text: "Terms of Use",
-                  href: "https://www.priceline.com/terms",
-                },
+                { text: "Privacy Policy", href: "https://www.priceline.com/privacy" },
+                { text: "Terms of Use", href: "https://www.priceline.com/terms" },
               ].map((link, i) => (
                 <React.Fragment key={link.text}>
                   {i > 0 && (
-                    <span
-                      style={{
-                        ...font,
-                        color: color.textLight,
-                        fontSize: "12px",
-                        padding: "0 8px",
-                      }}
-                    >
-                      |
-                    </span>
+                    <span style={{ ...font, color: color.textLight, fontSize: "12px", padding: "0 8px" }}>|</span>
                   )}
-                  <Link
-                    href={link.href}
-                    style={{
-                      ...font,
-                      fontSize: "12px",
-                      color: color.primaryBlue,
-                    }}
-                  >
+                  <Link href={link.href} style={{ ...font, fontSize: "12px", color: color.primaryBlue }}>
                     {link.text}
                   </Link>
                 </React.Fragment>
@@ -1171,10 +842,11 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 export default OfferConfirmationEmail;
 
 /* ------------------------------------------------------------------ */
-/*  mapOfferToEmailProps                                                */
+/*  mapOfferToEmailProps — maps real RMS offer-details API response     */
 /* ------------------------------------------------------------------ */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 function formatDate(raw: string): string {
   const d = new Date(raw);
   return d.toLocaleDateString("en-US", {
@@ -1194,117 +866,174 @@ function formatTime(raw: string): string {
   });
 }
 
-function formatCurrency(cents: number): string {
-  return `$${(cents / 100).toFixed(2)}`;
+function formatCurrency(amount: number): string {
+  return `$${amount.toFixed(2)}`;
 }
 
-function mapFlight(seg: any): FlightProps {
+function formatDuration(minutes: number): string {
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}
+
+function titleCase(str: string): string {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+function buildFlightFromSlice(
+  flyItem: any,
+  sliceIndex: number
+): FlightProps | undefined {
+  const slice = flyItem.slice?.[sliceIndex];
+  if (!slice) return undefined;
+  const seg = slice.segment?.[0];
+  if (!seg) return undefined;
+
+  const airportMap: Record<string, any> = {};
+  for (const ap of flyItem.airport ?? []) {
+    airportMap[ap.code] = ap;
+  }
+
+  const airlineMap: Record<string, any> = {};
+  for (const al of flyItem.airline ?? []) {
+    airlineMap[al.code] = al;
+  }
+
+  const airline = airlineMap[seg.marketingAirline] ?? {};
+  const origAirport = airportMap[seg.origAirport] ?? {};
+  const destAirport = airportMap[seg.destAirport] ?? {};
+  const imagePath = flyItem.imagePath ?? "https://www.priceline.com/sam/air/carrier_logos/";
+
+  const fareBrand = flyItem.fareBrandInfo?.name ?? flyItem.fareFamilies?.[0]?.name ?? seg.cabinName ?? "Economy";
+
   return {
-    airlineName: seg.airlineName ?? seg.airline?.name ?? "",
-    airlineLogo:
-      seg.airlineLogo ??
-      seg.airline?.logoUrl ??
-      `https://images.priceline.com/airlines/${(seg.airlineCode ?? seg.airline?.code ?? "").toLowerCase()}.png`,
-    flightNumber: seg.flightNumber ?? `${seg.airlineCode ?? ""}${seg.number ?? ""}`,
-    departureAirport: seg.departureAirport ?? seg.departure?.airportCode ?? "",
-    departureCity: seg.departureCity ?? seg.departure?.cityName ?? "",
-    departureTime:
-      seg.departureTimeFormatted ?? formatTime(seg.departureDateTime ?? seg.departure?.dateTime ?? ""),
-    departureDate:
-      seg.departureDateFormatted ?? formatDate(seg.departureDateTime ?? seg.departure?.dateTime ?? ""),
-    arrivalAirport: seg.arrivalAirport ?? seg.arrival?.airportCode ?? "",
-    arrivalCity: seg.arrivalCity ?? seg.arrival?.cityName ?? "",
-    arrivalTime:
-      seg.arrivalTimeFormatted ?? formatTime(seg.arrivalDateTime ?? seg.arrival?.dateTime ?? ""),
-    arrivalDate:
-      seg.arrivalDateFormatted ?? formatDate(seg.arrivalDateTime ?? seg.arrival?.dateTime ?? ""),
-    duration: seg.duration ?? seg.elapsedTime ?? "",
-    fareType: seg.fareType ?? seg.cabinClass ?? "Economy",
-    stops: seg.stops != null ? (seg.stops === 0 ? "Nonstop" : `${seg.stops} stop(s)`) : "Nonstop",
+    airlineName: airline.name ?? seg.marketingAirline ?? "",
+    airlineLogo: `${imagePath}${(airline.largeImage ?? `airLogo_${seg.marketingAirline}lg.gif`)}`,
+    flightNumber: `${seg.marketingAirline} ${seg.flightNumber}`,
+    departureAirport: seg.origAirport ?? "",
+    departureCity: origAirport.city ?? "",
+    departureTime: formatTime(seg.departDateTime),
+    departureDate: formatDate(seg.departDateTime),
+    arrivalAirport: seg.destAirport ?? "",
+    arrivalCity: destAirport.city ?? "",
+    arrivalTime: formatTime(seg.arrivalDateTime),
+    arrivalDate: formatDate(seg.arrivalDateTime),
+    duration: formatDuration(seg.duration ?? slice.duration ?? 0),
+    fareType: titleCase(fareBrand),
+    stops: seg.stopQuantity === 0 ? "Nonstop" : `${seg.stopQuantity} stop(s)`,
   };
 }
 
-export function mapOfferToEmailProps(offer: any): OfferConfirmationEmailProps {
-  const hotel = offer.hotel ?? offer.hotelDetails ?? {};
-  const outbound =
-    offer.outboundFlight ?? offer.flights?.outbound ?? offer.flights?.[0] ?? {};
-  const ret =
-    offer.returnFlight ?? offer.flights?.return ?? offer.flights?.[1] ?? {};
-  const pricing = offer.pricing ?? offer.priceSummary ?? {};
-  const traveler = offer.traveler ?? offer.passengers?.[0] ?? {};
+export function mapOfferToEmailProps(apiResponse: any): OfferConfirmationEmailProps {
+  const offer = apiResponse.offerDetails ?? apiResponse;
+  const primary = offer.primaryOffer ?? {};
+  const pkgData = primary.pkgData ?? {};
+  const components = primary.bundleComponents ?? [];
 
-  const hotelAmenities: string[] =
-    hotel.amenities?.map((a: any) => (typeof a === "string" ? a : a.name ?? a.label ?? "")) ?? [];
+  // Find FLY and STAY components
+  const flyComponent = components.find((c: any) => c.componentType === "FLY");
+  const stayComponent = components.find((c: any) => c.componentType === "STAY");
+  const flyItem = flyComponent?.item ?? {};
+  const stayItem = stayComponent?.item ?? {};
+  const hotelData = stayItem.hotel ?? {};
 
-  const review = hotel.guestReview ?? hotel.review ?? {};
+  // Customer info
+  const customer = offer.customer ?? {};
+  const passenger = flyItem.passenger?.[0] ?? {};
+  const personName = passenger.personName ?? {};
 
-  const airlines = new Set<string>();
-  [outbound, ret].forEach((f: any) => {
-    const name = f.airlineName ?? f.airline?.name;
-    if (name) airlines.add(name);
-  });
+  // Build flights from slices
+  const outboundFlight = buildFlightFromSlice(flyItem, 0)!;
+  const returnFlight = buildFlightFromSlice(flyItem, 1);
 
-  const checkInLinks: { airlineName: string; url: string }[] =
-    offer.checkInLinks ??
-    Array.from(airlines).map((name) => ({
-      airlineName: name,
-      url: `https://www.google.com/search?q=${encodeURIComponent(name + " online check in")}`,
+  // Hotel address
+  const hotelAddr = hotelData.address ?? {};
+  const fullAddress = [
+    hotelAddr.addressLine1,
+    hotelAddr.cityName,
+    hotelAddr.stateCode,
+    hotelAddr.zip,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+  // Hotel room info
+  const rooms = stayItem.rooms ?? [];
+  const primaryRoom = rooms[0] ?? {};
+
+  // Cancellation policy
+  const cancelPolicy =
+    primaryRoom.cancelPolicyText ??
+    Object.values(stayItem.importantInformation?.cancelPolicy ?? {})[0] ??
+    "Please review the cancellation policy on your booking confirmation page.";
+
+  // Resort / mandatory fee
+  const mandatoryFee = stayComponent?.mandatoryFee ?? 0;
+  const resortFeeNotice =
+    mandatoryFee > 0
+      ? `A resort fee of ${formatCurrency(mandatoryFee)} per night will be collected directly by the hotel at check-in.`
+      : "";
+
+  // Pricing
+  const priceSummary = primary.pkgPriceSummary ?? {};
+
+  // Airline check-in links
+  const airlines = flyItem.airline ?? [];
+  const checkInLinks = airlines
+    .filter((a: any) => a.checkInUrl)
+    .map((a: any) => ({
+      airlineName: a.name,
+      url: a.checkInUrl.startsWith("http") ? a.checkInUrl : `https://${a.checkInUrl}`,
     }));
 
+  // Customer service phone
+  const csPhone =
+    offer.customerServicePhoneNumbers?.[0]?.phoneNumber ??
+    flyItem.customerServiceContact?.[0]?.phone ??
+    "1-877-477-4235";
+
+  // Guest review quotes
+  const quotes = hotelData.quotes ?? [];
+
   return {
-    destination: offer.destination ?? hotel.cityName ?? hotel.city ?? "",
-    travelerName:
-      offer.travelerName ??
-      [traveler.firstName, traveler.lastName].filter(Boolean).join(" "),
-    bookingRef: offer.bookingRef ?? offer.bookingReference ?? offer.confirmationId ?? "",
-    tripStartDate:
-      offer.tripStartDate ??
-      outbound.departureDateTime ??
-      outbound.departure?.dateTime ??
-      hotel.checkIn ??
-      "",
-    tripEndDate:
-      offer.tripEndDate ??
-      ret.arrivalDateTime ??
-      ret.arrival?.dateTime ??
-      hotel.checkOut ??
-      "",
+    destination: titleCase(pkgData.destLocationName ?? hotelAddr.cityName ?? ""),
+    travelerName: titleCase(
+      `${customer.firstName ?? personName.givenName ?? ""} ${customer.lastName ?? personName.surname ?? ""}`
+    ),
+    bookingRef: String(pkgData.offerNum ?? offer.offerNum ?? ""),
+    tripStartDate: formatDate(pkgData.travelStartDate ?? stayItem.travelStartDateTime ?? ""),
+    tripEndDate: formatDate(pkgData.travelEndDate ?? stayItem.travelEndDateTime ?? ""),
     hotel: {
-      name: hotel.name ?? "",
-      starRating: hotel.starRating ?? hotel.stars ?? 0,
-      address: hotel.address ?? hotel.fullAddress ?? "",
-      imageUrl: hotel.imageUrl ?? hotel.image ?? hotel.thumbnailUrl ?? "",
-      roomType: hotel.roomType ?? hotel.roomDescription ?? "",
-      checkIn: hotel.checkInFormatted ?? formatDate(hotel.checkIn ?? hotel.checkInDate ?? ""),
-      checkOut: hotel.checkOutFormatted ?? formatDate(hotel.checkOut ?? hotel.checkOutDate ?? ""),
-      confirmationNumber:
-        hotel.confirmationNumber ?? hotel.hotelConfirmationId ?? "",
-      amenities: hotelAmenities,
-      guestReviewQuote: review.quote ?? review.text ?? review.comment ?? "",
-      guestReviewAuthor: review.author ?? review.reviewerName ?? "Verified Guest",
-      latitude: hotel.latitude ?? hotel.lat ?? 0,
-      longitude: hotel.longitude ?? hotel.lon ?? hotel.lng ?? 0,
+      name: hotelData.hotelName ?? "",
+      starRating: Number(hotelData.starRating ?? stayItem.hotelMinStar ?? 0),
+      address: fullAddress,
+      imageUrl: hotelData.thumbnailURL ?? "",
+      roomType: primaryRoom.planDescription ?? "Standard Room",
+      checkIn: `${formatDate(stayItem.travelStartDateTime ?? "")} at ${hotelData.checkInTime ?? "3:00 PM"}`,
+      checkOut: `${formatDate(stayItem.travelEndDateTime ?? "")} at ${hotelData.checkOutTime ?? "11:00 AM"}`,
+      confirmationNumber: primaryRoom.confirmationNum ?? "",
+      amenities: (hotelData.amenityDetails ?? []).slice(0, 8),
+      guestReviewQuote: (quotes[0] ?? "").trim(),
+      guestReviewAuthor: "Verified Guest",
+      latitude: hotelData.lat ?? 0,
+      longitude: hotelData.lon ?? 0,
     },
-    outboundFlight: mapFlight(outbound),
-    returnFlight: mapFlight(ret),
-    pnrLocator: offer.pnrLocator ?? offer.pnr ?? offer.recordLocator ?? "",
-    passengerName:
-      offer.passengerName ??
-      [traveler.firstName, traveler.lastName].filter(Boolean).join(" "),
+    outboundFlight,
+    returnFlight,
+    pnrLocator: flyItem.pnrLocator ?? "",
+    passengerName: `${personName.givenName ?? ""} ${personName.surname ?? ""}`.trim(),
     priceSummary: {
-      packagePrice: pricing.packagePriceFormatted ?? formatCurrency(pricing.packagePrice ?? 0),
-      taxes: pricing.taxesFormatted ?? formatCurrency(pricing.taxes ?? pricing.taxesAndFees ?? 0),
-      resortFee: pricing.resortFeeFormatted ?? formatCurrency(pricing.resortFee ?? 0),
-      totalCharged: pricing.totalFormatted ?? formatCurrency(pricing.total ?? pricing.totalCharged ?? 0),
+      packagePrice: formatCurrency(priceSummary.basePkgPrice?.amount ?? pkgData.finalOfferPrice ?? 0),
+      taxes: formatCurrency(priceSummary.totalTaxesAndFees?.amount ?? pkgData.billableTaxAmt ?? 0),
+      resortFee: formatCurrency(priceSummary.mandatoryFee?.amount ?? 0),
+      totalCharged: formatCurrency(priceSummary.totalChargedToday?.amount ?? 0),
     },
-    cancellationPolicy:
-      offer.cancellationPolicy ??
-      hotel.cancellationPolicy ??
-      "Please review the cancellation policy on your booking confirmation page.",
-    resortFeeNotice:
-      offer.resortFeeNotice ??
-      hotel.resortFeeNotice ??
-      "A resort fee will be collected directly by the hotel at check-in. This fee is not included in your prepaid total.",
+    cancellationPolicy: cancelPolicy,
+    resortFeeNotice,
     checkInLinks,
   };
 }
