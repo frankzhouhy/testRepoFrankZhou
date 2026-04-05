@@ -116,13 +116,19 @@ function googleCalendarUrl(
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
-function staticMapUrl(lat: number, lon: number): string {
-  return (
-    `https://maps.googleapis.com/maps/api/staticmap` +
-    `?center=${lat},${lon}&zoom=15&size=600x250&scale=2` +
-    `&markers=color:red%7C${lat},${lon}` +
-    `&key=GOOGLE_MAPS_KEY`
+function staticMapImageUrl(lat: number, lon: number): string {
+  // OpenStreetMap tile as a simple map preview (zoom 15, single tile)
+  const zoom = 15;
+  const n = Math.pow(2, zoom);
+  const xtile = Math.floor(((lon + 180) / 360) * n);
+  const ytile = Math.floor(
+    ((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) / 2) * n
   );
+  return `https://tile.openstreetmap.org/${zoom}/${xtile}/${ytile}.png`;
+}
+
+function googleMapsLink(lat: number, lon: number): string {
+  return `https://www.google.com/maps?q=${lat},${lon}`;
 }
 
 function renderStars(count: number): string {
@@ -410,10 +416,10 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
             }}
           >
             <Img
-              src="https://press.priceline.com/wp-content/uploads/2022/07/Priceline_Logo_White_RGB-e1658252498498.png"
+              src="https://s1.pclncdn.com/design-assets/brand/priceline-logo-white.png"
               alt="Priceline"
               width="160"
-              height="auto"
+              height="32"
               style={{ margin: "0 auto" }}
             />
           </Section>
@@ -631,19 +637,25 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
               </div>
             </Section>
 
-            {/* -------- 6. Static Map -------- */}
-            <Img
-              src={staticMapUrl(hotel.latitude, hotel.longitude)}
-              alt={`Map of ${hotel.name}`}
-              width="600"
-              height="250"
-              style={{
-                display: "block",
-                width: "100%",
-                borderRadius: "8px",
-                border: `1px solid ${color.border}`,
-              }}
-            />
+            {/* -------- 6. Map -------- */}
+            <Link href={googleMapsLink(hotel.latitude, hotel.longitude)}>
+              <Img
+                src={staticMapImageUrl(hotel.latitude, hotel.longitude)}
+                alt={`Map of ${hotel.name} — Click to open in Google Maps`}
+                width="600"
+                height="250"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  borderRadius: "8px",
+                  border: `1px solid ${color.border}`,
+                  objectFit: "cover" as const,
+                }}
+              />
+              <Text style={{ ...font, fontSize: "12px", color: color.primaryBlue, textAlign: "center" as const, margin: "8px 0 0" }}>
+                View on Google Maps &rarr;
+              </Text>
+            </Link>
           </Section>
 
           {/* -------- 7. Cancellation Policy (orange) -------- */}
