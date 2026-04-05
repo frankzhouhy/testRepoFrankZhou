@@ -79,6 +79,7 @@ export interface PriceSummaryProps {
 }
 
 export interface OfferConfirmationEmailProps {
+  baseUrl?: string;
   destination: string;
   travelerName: string;
   bookingRef: string;
@@ -332,6 +333,7 @@ function FlightCard({
 
 export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
   const {
+    baseUrl = "https://test-repo-frank-zhou.vercel.app",
     destination,
     travelerName,
     bookingRef,
@@ -416,7 +418,7 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
             }}
           >
             <Img
-              src="https://s1.pclncdn.com/design-assets/brand/priceline-logo-white.png"
+              src={`${baseUrl}/priceline-logo-white.svg`}
               alt="Priceline"
               width="160"
               height="32"
@@ -898,7 +900,8 @@ function titleCase(str: string): string {
 
 function buildFlightFromSlice(
   flyItem: any,
-  sliceIndex: number
+  sliceIndex: number,
+  baseUrl: string
 ): FlightProps | undefined {
   const slice = flyItem.slice?.[sliceIndex];
   if (!slice) return undefined;
@@ -924,7 +927,7 @@ function buildFlightFromSlice(
 
   return {
     airlineName: airline.name ?? seg.marketingAirline ?? "",
-    airlineLogo: `${imagePath}${(airline.largeImage ?? `airLogo_${seg.marketingAirline}lg.gif`)}`,
+    airlineLogo: `${baseUrl}/airline-${seg.marketingAirline?.toLowerCase() ?? "unknown"}.svg`,
     flightNumber: `${seg.marketingAirline} ${seg.flightNumber}`,
     departureAirport: seg.origAirport ?? "",
     departureCity: origAirport.city ?? "",
@@ -959,8 +962,9 @@ export function mapOfferToEmailProps(apiResponse: any): OfferConfirmationEmailPr
   const personName = passenger.personName ?? {};
 
   // Build flights from slices
-  const outboundFlight = buildFlightFromSlice(flyItem, 0)!;
-  const returnFlight = buildFlightFromSlice(flyItem, 1);
+  const baseUrl = "https://test-repo-frank-zhou.vercel.app";
+  const outboundFlight = buildFlightFromSlice(flyItem, 0, baseUrl)!;
+  const returnFlight = buildFlightFromSlice(flyItem, 1, baseUrl);
 
   // Hotel address
   const hotelAddr = hotelData.address ?? {};
