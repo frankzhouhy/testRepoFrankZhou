@@ -1049,7 +1049,7 @@ export function mapOfferToEmailProps(apiResponse: any): OfferConfirmationEmailPr
       name: hotelData.hotelName ?? "",
       starRating: Number(hotelData.starRating ?? stayItem.hotelMinStar ?? 0),
       address: fullAddress,
-      imageUrl: `${baseUrl}/hotel-${(hotelData.hotelName ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-$/, "")}.svg`,
+      imageUrl: hotelData.thumbnailURL ?? "",
       roomType: primaryRoom.planDescription ?? "Standard Room",
       checkIn: `${formatDate(stayItem.travelStartDateTime ?? "")} at ${hotelData.checkInTime ?? "3:00 PM"}`,
       checkOut: `${formatDate(stayItem.travelEndDateTime ?? "")} at ${hotelData.checkOutTime ?? "11:00 AM"}`,
