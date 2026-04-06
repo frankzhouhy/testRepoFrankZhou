@@ -156,6 +156,18 @@ const cardStyle: React.CSSProperties = {
   marginBottom: "16px",
 };
 
+const footerPillStyle: React.CSSProperties = {
+  display: "block",
+  padding: "12px 16px",
+  fontSize: "14px",
+  fontWeight: 500,
+  color: color.primaryBlue,
+  backgroundColor: color.white,
+  borderRadius: "24px",
+  textDecoration: "none",
+  textAlign: "center" as const,
+};
+
 const badgeStyle: React.CSSProperties = {
   display: "inline-block",
   padding: "4px 10px",
@@ -414,18 +426,56 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
           {/* -------- 1. Header -------- */}
           <Section
             style={{
-              backgroundColor: color.primaryBlue,
-              padding: "20px 32px",
-              textAlign: "center" as const,
+              backgroundColor: color.white,
+              padding: "16px 32px",
+              borderBottom: `1px solid ${color.border}`,
             }}
           >
-            <Img
-              src={`${baseUrl}/priceline-logo-white.svg`}
-              alt="Priceline"
-              width="160"
-              height="32"
-              style={{ margin: "0 auto", display: "block" }}
-            />
+            <Row>
+              <Column style={{ verticalAlign: "middle" }}>
+                <Img
+                  src={`${baseUrl}/priceline-logo-blue.svg`}
+                  alt="Priceline"
+                  width="140"
+                  height="28"
+                />
+              </Column>
+              <Column style={{ textAlign: "right" as const, verticalAlign: "middle" }}>
+                <Link
+                  href={itineraryUrl || "https://www.priceline.com/account/trips"}
+                  style={{
+                    ...font,
+                    display: "inline-block",
+                    padding: "6px 16px",
+                    fontSize: "13px",
+                    fontWeight: 500,
+                    color: color.primaryBlue,
+                    border: `1px solid ${color.border}`,
+                    borderRadius: "20px",
+                    textDecoration: "none",
+                    marginRight: "8px",
+                  }}
+                >
+                  Manage
+                </Link>
+                <Link
+                  href="https://www.priceline.com/account/vip"
+                  style={{
+                    ...font,
+                    display: "inline-block",
+                    padding: "6px 16px",
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    color: "#B8860B",
+                    border: `1px solid ${color.border}`,
+                    borderRadius: "20px",
+                    textDecoration: "none",
+                  }}
+                >
+                  VIP GOLD
+                </Link>
+              </Column>
+            </Row>
           </Section>
 
           {/* -------- 2. Hero Banner -------- */}
@@ -825,49 +875,140 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
 
           <Hr style={{ borderColor: color.border, margin: "0 32px" }} />
 
-          {/* -------- 14. Customer Service -------- */}
-          <Section style={{ ...sectionPadding, textAlign: "center" as const }}>
-            <Text style={{ ...font, fontSize: "14px", fontWeight: 600, color: color.headingBlue, margin: "0 0 4px" }}>
-              Need help with your booking?
-            </Text>
-            <Text style={{ ...font, fontSize: "13px", color: color.textLight, margin: "0 0 8px" }}>
-              Our travel experts are available 24/7
-            </Text>
-            <Link
-              href="tel:1-877-477-4235"
-              style={{ ...font, fontSize: "18px", fontWeight: 600, color: color.primaryBlue, textDecoration: "none" }}
-            >
-              1-877-477-4235
-            </Link>
-          </Section>
-
-          {/* -------- 15. Footer -------- */}
+          {/* -------- 14 & 15. Footer -------- */}
           <Section
             style={{
               backgroundColor: color.bgLight,
-              padding: "24px 32px",
-              textAlign: "center" as const,
+              padding: "28px 32px 16px",
             }}
           >
-            <Text style={{ ...font, fontSize: "12px", color: color.textLight, margin: "0 0 8px" }}>
-              Priceline.com LLC &bull; 800 Connecticut Ave, Norwalk, CT 06854
+            {/* Product links grid */}
+            <Row style={{ marginBottom: "8px" }}>
+              <Column style={{ width: "50%", paddingRight: "6px" }}>
+                <Link href="https://www.priceline.com/stay" style={{ ...footerPillStyle, ...font }}>
+                  Hotels
+                </Link>
+              </Column>
+              <Column style={{ width: "50%", paddingLeft: "6px" }}>
+                <Link href="https://www.priceline.com/fly" style={{ ...footerPillStyle, ...font }}>
+                  Flights
+                </Link>
+              </Column>
+            </Row>
+            <Row style={{ marginBottom: "8px" }}>
+              <Column style={{ width: "50%", paddingRight: "6px" }}>
+                <Link href="https://www.priceline.com/packages" style={{ ...footerPillStyle, ...font }}>
+                  Packages
+                </Link>
+              </Column>
+              <Column style={{ width: "50%", paddingLeft: "6px" }}>
+                <Link href="https://www.priceline.com/drive" style={{ ...footerPillStyle, ...font }}>
+                  Cars
+                </Link>
+              </Column>
+            </Row>
+            <Row style={{ marginBottom: "8px" }}>
+              <Column style={{ width: "50%", paddingRight: "6px" }}>
+                <Link href="https://www.priceline.com/cruises" style={{ ...footerPillStyle, ...font }}>
+                  Cruises
+                </Link>
+              </Column>
+              <Column style={{ width: "50%", paddingLeft: "6px" }}>
+                <Link href="https://www.priceline.com/experiences" style={{ ...footerPillStyle, ...font }}>
+                  Experiences
+                </Link>
+              </Column>
+            </Row>
+            <Row style={{ marginBottom: "8px" }}>
+              <Column style={{ width: "50%", paddingRight: "6px" }}>
+                <Link href="https://www.priceline.com/mobile" style={{ ...footerPillStyle, ...font }}>
+                  Explore App Deals
+                </Link>
+              </Column>
+              <Column style={{ width: "50%", paddingLeft: "6px" }}>
+                <Link href="https://www.priceline.com/penny" style={{ ...footerPillStyle, ...font }}>
+                  Chat with Penny
+                </Link>
+              </Column>
+            </Row>
+
+            {/* Social section */}
+            <Text style={{ ...font, fontSize: "14px", fontWeight: 600, color: color.textBase, textAlign: "center" as const, margin: "20px 0 12px" }}>
+              Let&apos;s connect!
             </Text>
-            <div>
+            <div style={{ textAlign: "center" as const, marginBottom: "20px" }}>
               {[
-                { text: "Help Center", href: "https://www.priceline.com/help" },
-                { text: "Privacy Policy", href: "https://www.priceline.com/privacy" },
-                { text: "Terms of Use", href: "https://www.priceline.com/terms" },
-              ].map((link, i) => (
-                <React.Fragment key={link.text}>
-                  {i > 0 && (
-                    <span style={{ ...font, color: color.textLight, fontSize: "12px", padding: "0 8px" }}>|</span>
-                  )}
-                  <Link href={link.href} style={{ ...font, fontSize: "12px", color: color.primaryBlue }}>
-                    {link.text}
-                  </Link>
-                </React.Fragment>
+                { label: "TikTok", href: "https://www.tiktok.com/@priceline", icon: "T" },
+                { label: "X", href: "https://x.com/priceline", icon: "X" },
+                { label: "Instagram", href: "https://www.instagram.com/priceline", icon: "I" },
+                { label: "Facebook", href: "https://www.facebook.com/priceline", icon: "f" },
+              ].map((s) => (
+                <Link
+                  key={s.label}
+                  href={s.href}
+                  style={{
+                    display: "inline-block",
+                    width: "36px",
+                    height: "36px",
+                    lineHeight: "36px",
+                    borderRadius: "50%",
+                    border: `1px solid ${color.border}`,
+                    textAlign: "center" as const,
+                    textDecoration: "none",
+                    color: color.primaryBlue,
+                    fontSize: "16px",
+                    fontWeight: 600,
+                    marginRight: "10px",
+                    ...font,
+                  }}
+                >
+                  {s.icon}
+                </Link>
               ))}
             </div>
+
+            <Hr style={{ borderColor: color.border, margin: "0 0 16px" }} />
+
+            {/* Support text */}
+            <Text style={{ ...font, fontSize: "13px", fontWeight: 600, color: color.textBase, textAlign: "center" as const, margin: "0 0 4px" }}>
+              We&apos;re here to help if your travel plans change.
+            </Text>
+            <Text style={{ ...font, fontSize: "13px", textAlign: "center" as const, margin: "0 0 16px" }}>
+              <Link href="https://www.priceline.com/help" style={{ color: color.primaryBlue, fontWeight: 600 }}>
+                Click for support
+              </Link>.
+            </Text>
+
+            <Text style={{ ...font, fontSize: "12px", color: color.textLight, textAlign: "center" as const, margin: "0 0 12px", lineHeight: "1.6" }}>
+              Responses to this email will not go to a Customer Care representative.
+              To contact our Customer Care team directly, and find answers to FAQs,
+              please visit our{" "}
+              <Link href="https://www.priceline.com/help" style={{ color: color.primaryBlue, fontWeight: 600 }}>
+                Help Center
+              </Link>
+              . Priceline will never request gift cards when providing customer support.
+            </Text>
+
+            <Hr style={{ borderColor: color.border, margin: "12px 0" }} />
+
+            <Text style={{ ...font, fontSize: "12px", color: color.textLight, textAlign: "center" as const, margin: "0 0 4px" }}>
+              This is a transactional email from{" "}
+              <Link href="https://www.priceline.com" style={{ color: color.primaryBlue }}>
+                priceline.com
+              </Link>{" "}
+              LLC
+            </Text>
+            <Text style={{ ...font, fontSize: "12px", color: color.textLight, textAlign: "center" as const, margin: "0 0 12px" }}>
+              800 Connecticut Ave. Norwalk, CT 06854
+            </Text>
+
+            <Img
+              src={`${baseUrl}/priceline-logo-blue.svg`}
+              alt="Priceline"
+              width="120"
+              height="24"
+              style={{ margin: "0 auto", display: "block" }}
+            />
           </Section>
         </Container>
       </Body>
