@@ -94,6 +94,7 @@ export interface OfferConfirmationEmailProps {
   cancellationPolicy: string;
   resortFeeNotice: string;
   checkInLinks: { airlineName: string; url: string }[];
+  itineraryUrl: string;
 }
 
 /* ------------------------------------------------------------------ */
@@ -348,6 +349,7 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
     cancellationPolicy,
     resortFeeNotice,
     checkInLinks,
+    itineraryUrl,
   } = props;
 
   const calUrl = googleCalendarUrl(
@@ -422,7 +424,7 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
               alt="Priceline"
               width="160"
               height="32"
-              style={{ margin: "0 auto" }}
+              style={{ margin: "0 auto", display: "block" }}
             />
           </Section>
 
@@ -530,6 +532,26 @@ export function OfferConfirmationEmail(props: OfferConfirmationEmailProps) {
               >
                 Add to Google Calendar
               </Link>
+              {itineraryUrl && (
+                <Link
+                  href={itineraryUrl}
+                  style={{
+                    ...font,
+                    display: "inline-block",
+                    padding: "10px 24px",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    color: color.primaryBlue,
+                    backgroundColor: color.white,
+                    border: `2px solid ${color.primaryBlue}`,
+                    borderRadius: "6px",
+                    textDecoration: "none",
+                    marginLeft: "12px",
+                  }}
+                >
+                  Manage Your Booking
+                </Link>
+              )}
             </div>
           </Section>
 
@@ -1051,6 +1073,7 @@ export function mapOfferToEmailProps(apiResponse: any): OfferConfirmationEmailPr
     cancellationPolicy: cancelPolicy,
     resortFeeNotice,
     checkInLinks,
+    itineraryUrl: offer.itineraryUrl ?? offer.checkStatusUrl ?? "",
   };
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
